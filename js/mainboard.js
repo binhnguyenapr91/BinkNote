@@ -2,13 +2,36 @@ const CONFIRM_UPDATE_STRING = "Are you sure to update this note?";
 const CONFIRM_DELETE_STRING = "Are you sure to delete this note?";
 
 
-let activeUser = getActiveUser();
-
-
+let activeUser = loadUserLoggedIn();
+console.table(window.localStorage);
 console.table(activeUser);
+let key = getKeyOfActiveUser(activeUser.username);
+console.log("Key of active user:"+key);
+document.getElementById("accountName").innerHTML = activeUser.username + "/" + activeUser.email;
 document.getElementById("boardName").innerHTML = "Board Name: " + board.getBoardName();
-document.getElementById("accountName").innerHTML = activeUser.username +"/"+activeUser.email;
 
+//Function get key of active user in Local Storage
+function getKeyOfActiveUser(username) {
+    let arrUser = [];
+    let index = 1;
+    while (index <= window.localStorage.length) {
+        arrUser.push(JSON.parse(window.localStorage.getItem(index.toString())));
+        index++;
+    }
+    for (let j = 0; j < arrUser.length; j++) {
+        if (username === arrUser[j].username) {
+            return j+1;
+        }
+    }
+}
+
+//Save to Board to active User
+function saveNote() {
+    activeUser.board.push(board);
+    console.table(board);
+    console.table(activeUser);
+    updateDataToLocalStorage(key,activeUser);
+}
 
 //Actions CRUD with note
 //CREATE ok
@@ -29,7 +52,7 @@ function createNewNote() {
 
     document.getElementById("noteContainer0").innerHTML = html;
     resetForm();
-    //console.table(user1);
+    console.table(board);
     return note;
 }
 
@@ -56,9 +79,10 @@ function updateNote() {
         x.querySelector(".noteTitle").innerHTML = title;
         x.querySelector(".noteContent").innerHTML = content;
         resetForm();
-        //console.table(user1);
+        console.table(activeUser);
     }
 }
+
 //DELETE ok
 function deleteNote() {
     if (confirm(CONFIRM_DELETE_STRING)) {
@@ -66,7 +90,7 @@ function deleteNote() {
         board.deleteNote((parseInt(idOfSelectedNote) - 1));
         document.getElementById("noteContainer0").innerHTML = "";
         //console to check
-        //console.table(user1);
+        console.table(activeUser);
     }
 }
 
@@ -76,6 +100,7 @@ function resetForm() {
     document.getElementById("txtNoteTitle").value = "";
     document.getElementById("txaInputNoteContent").value = "";
 }
+
 //Get the ID of selected Note
 function getIDOfSelectedNote() {
     let idOfSelectedNote = document.getElementsByClassName("noteItem")[0].id;

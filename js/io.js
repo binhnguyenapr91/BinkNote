@@ -27,3 +27,6 @@ function getUsernameOfTheCurrentSession() {
     return sessionStorage.getItem(ACTIVE_SESSION_KEY);
 }
 
+function updateDataToLocalStorage(key,userNeedToUpdate) {
+    window.localStorage.setItem("1",JSON.stringify(userNeedToUpdate));
+}

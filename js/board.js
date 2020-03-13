@@ -17,15 +17,12 @@ function Board(boardName) {
         this.note.push(note);
     };
     this.deleteNote = function (indexOfNote) {
-        this.note.splice(indexOfNote,1,"[deleted,deleted");
+        this.note.splice(indexOfNote, 1, "[deleted,deleted");
     };
     this.createBoard = function (boardName) {
         return new Board(this.boardName = boardName);
     }
 }
 
-
-// let board = new Board("Sunny");
-// document.getElementById("boardName").innerHTML = "Board Name: " + board.getBoardName();
-
-let board = new Board("Sunny");
+let board = new Board("KANBAN");
+document.getElementById("boardName").innerHTML = "Board Name: " + board.getBoardName();

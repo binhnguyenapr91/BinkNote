@@ -1,6 +1,8 @@
 //Register Functions
 
 //window.localStorage.clear();
+const REGISTRATION_SUCCESS_STRING = "Registration successful!";
+
 function registerNewUser() {
     let user = new User();
     let newUserName = document.getElementById("username").value;
@@ -9,7 +11,8 @@ function registerNewUser() {
     let newUser = user.createUser(newUserName, newUserPassword, newUserEmail);
     console.table(newUser);
     addObjectToLocalStorage(newUser);
-    //navigateToLogin();
+    alert(REGISTRATION_SUCCESS_STRING);
+    navigateToLogin();
 }
 
 //Add a Object to Local Storage
