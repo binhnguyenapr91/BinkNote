@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/register.css">
+
+</head>
+<body>
+<div class="mainContainer">
+    <div class="registerForm">
+        <div class="registerHeader">
+            <h2>REGISTER YOUR BINK-NOTE ACCOUNT</h2>
+        </div>
+        <div class="registerBody">
+            <label for="userName"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" id="username" required>
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" id="password" required>
+            <label for="password"><b>Confirm your password</b></label>
+            <input type="password" placeholder="Enter Password again" id="retypePassword" required>
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" id="email" required>
+            <button id="login" onclick="navigateToLogin()">Login</button><button id="register" onclick="registerNewUser()">Register</button>
+        </div>
+    </div>
+</div>
+<script src="js/user.js" defer></script>
+<script src="js/registration.js" defer></script>
+<script src="js/navigate.js" defer></script>
+</body>
+</html>

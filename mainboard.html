@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Board</title>
+    <link rel="stylesheet" href="css/mainboard.css">
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+<body onload="checkSession()">
+<div class="boardContainer">
+    <div class="boardHeader">
+        <div id="boardName"></div>
+        <div class="logo"></div>
+        <div id="accountName"></div>
+        <button id="logout" onclick="logOut()">Log out</button>
+        <button id="save" onclick="saveNote()">Save</button>
+    </div>
+    <div class="boardFunction">
+        <table>
+            <tr>
+                <td><span>Note title: </span></td>
+                <td><input type="text" id="txtNoteTitle" placeholder="Note Title" size="29px"></td>
+                <td rowspan="3" id="newNotePosition" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    New Note Position
+                    <div class="noteContainer" id="noteContainer0">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Note content:</span></td>
+                <td><textarea name="txaInputNoteContent" id="txaInputNoteContent" cols="42" rows="4"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button onclick="createNewNote()">Create</button>
+                    <button onclick="readNote()">Read</button>
+                    <button onclick="updateNote()">Update</button>
+                    <button onclick="deleteNote()">Delete</button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="boardBody">
+        <div class="todo">
+            <h2>TODO</h2>
+            <div id="todoList" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="noteContainer" id="noteContainer1">
+
+                </div>
+                <div class="noteContainer" id="noteContainer2">
+
+                </div>
+                <div class="noteContainer" id="noteContainer3">
+
+                </div>
+                <div class="noteContainer" id="noteContainer4">
+
+                </div>
+            </div>
+        </div>
+        <div class="doing">
+            <h2>DOING</h2>
+            <div id="doingList" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="noteContainer" id="noteContainer5">
+
+                </div>
+                <div class="noteContainer" id="noteContainer6">
+
+                </div>
+                <div class="noteContainer" id="noteContainer7">
+
+                </div>
+                <div class="noteContainer" id="noteContainer8">
+
+                </div>
+            </div>
+        </div>
+        <div class="done">
+            <h2>DONE</h2>
+            <div class="doneList" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="noteContainer" id="noteContainer9">
+
+                </div>
+                <div class="noteContainer" id="noteContainer10">
+
+                </div>
+                <div class="noteContainer" id="noteContainer11">
+
+                </div>
+                <div class="noteContainer" id="noteContainer12">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/navigate.js" defer></script>
+<script src="js/mainboard.js" defer ></script>
+<script src="js/dnd.js" defer></script>
+<script src="js/note.js"></script>
+<script src="js/board.js" defer></script>
+<script src="js/user.js" defer></script>
+<script src="js/login.js"></script>
+<script src="js/io.js"></script>
+</body>
+</html>
