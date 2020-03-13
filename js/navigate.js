@@ -1,6 +1,6 @@
 //Functions to navigate user to page
 function navigateToLogin() {
-    location.replace("login.html");
+    location.replace("index.html");
 }
 
 function navigateToRegister() {

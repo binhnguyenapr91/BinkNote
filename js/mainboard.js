@@ -1,36 +1,42 @@
 const CONFIRM_UPDATE_STRING = "Are you sure to update this note?";
 const CONFIRM_DELETE_STRING = "Are you sure to delete this note?";
-
+const DIFFERENCE_INDEX_AND_KEY = 1;
 
 let activeUser = loadUserLoggedIn();
 console.table(window.localStorage);
 console.table(activeUser);
-let key = getKeyOfActiveUser(activeUser.username);
-console.log("Key of active user:"+key);
+let keyOfActiveUser = getKeyOfActiveUser(activeUser.username);
+console.log("Key of active user:"+keyOfActiveUser);
 document.getElementById("accountName").innerHTML = activeUser.username + "/" + activeUser.email;
 document.getElementById("boardName").innerHTML = "Board Name: " + board.getBoardName();
+//console.log(activeUser.board.getNote());
 
 //Function get key of active user in Local Storage
 function getKeyOfActiveUser(username) {
     let arrUser = [];
-    let index = 1;
+    let index = DIFFERENCE_INDEX_AND_KEY;
     while (index <= window.localStorage.length) {
         arrUser.push(JSON.parse(window.localStorage.getItem(index.toString())));
         index++;
     }
     for (let j = 0; j < arrUser.length; j++) {
         if (username === arrUser[j].username) {
-            return j+1;
+            return j+ DIFFERENCE_INDEX_AND_KEY;
         }
     }
 }
 
+//Load Note of active user to the board
+function loadBoard() {
+    let listBoard = activeUser.board.note;
+    console.table(listBoard);
+}
 //Save to Board to active User
-function saveNote() {
-    activeUser.board.push(board);
+function saveBoard() {
+    activeUser.board = board;
     console.table(board);
     console.table(activeUser);
-    updateDataToLocalStorage(key,activeUser);
+    updateDataToLocalStorage(keyOfActiveUser,activeUser);
 }
 
 //Actions CRUD with note
@@ -73,8 +79,8 @@ function updateNote() {
         let content = document.getElementById("txaInputNoteContent").value;
         let idOfSelectedNote = getIDOfSelectedNote();
         let arrayNoteInBoard = board.getNote();
-        arrayNoteInBoard[parseInt(idOfSelectedNote) - 1].setNoteTitle(title);
-        arrayNoteInBoard[parseInt(idOfSelectedNote) - 1].setNoteContent(content);
+        arrayNoteInBoard[parseInt(idOfSelectedNote) - DIFFERENCE_INDEX_AND_KEY].setNoteTitle(title);
+        arrayNoteInBoard[parseInt(idOfSelectedNote) - DIFFERENCE_INDEX_AND_KEY].setNoteContent(content);
         console.table(arrayNoteInBoard);
         x.querySelector(".noteTitle").innerHTML = title;
         x.querySelector(".noteContent").innerHTML = content;
@@ -87,7 +93,7 @@ function updateNote() {
 function deleteNote() {
     if (confirm(CONFIRM_DELETE_STRING)) {
         let idOfSelectedNote = getIDOfSelectedNote();
-        board.deleteNote((parseInt(idOfSelectedNote) - 1));
+        board.deleteNote((parseInt(idOfSelectedNote) - DIFFERENCE_INDEX_AND_KEY));
         document.getElementById("noteContainer0").innerHTML = "";
         //console to check
         console.table(activeUser);

@@ -1,5 +1,4 @@
 //Load User has been logged in and return the key of this user
-
 function loadUserLoggedIn() {
     let currentUser = getObjectFromLocalStorage(searchKeyByUsername(getUsernameOfTheCurrentSession()));
     return currentUser;
@@ -15,18 +14,17 @@ function searchKeyByUsername(username) {
     return listUsername.indexOf(username)+1;
 }
 
-
-
 //Get a Object from Local Storage by index
 function getObjectFromLocalStorage(index) {
     return JSON.parse(window.localStorage.getItem(index.toString()));
 }
 
-//Get user who logged in
+//Get username of active user
 function getUsernameOfTheCurrentSession() {
     return sessionStorage.getItem(ACTIVE_SESSION_KEY);
 }
 
+//Update user data to Local Storage
 function updateDataToLocalStorage(key,userNeedToUpdate) {
-    window.localStorage.setItem("1",JSON.stringify(userNeedToUpdate));
+    window.localStorage.setItem(key,JSON.stringify(userNeedToUpdate));
 }

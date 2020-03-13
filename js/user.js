@@ -2,7 +2,7 @@ function User(username, password, email) {
     this.username = username;
     this.password = password;
     this.email = email;
-    this.board = [];
+    this.board;
 
     this.getUsername = function () {
         return this.username;
@@ -27,7 +27,7 @@ function User(username, password, email) {
         return this.board;
     };
     this.addNewBoard = function (board) {
-        this.board.push(board);
+        this.board = board;
     };
 
     this.getUser = function () {
