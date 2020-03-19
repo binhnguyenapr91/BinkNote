@@ -49,10 +49,6 @@ function User(username, password, email) {
 }
 
 
-// let user1 = new User("binhnguyen", "binh123", "binh@email.com");
-// user1.addNewBoard(board);
-// document.getElementById("accountName").innerHTML =user1.getUsername() + "/" + user1.getEmail();
-
 
 
 
